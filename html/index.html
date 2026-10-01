@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Chủ - My Web Server</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root {
+            --bg-primary: #0a0d14;
+            --bg-card: rgba(22, 28, 45, 0.7);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-green: #10b981;
+            --accent-purple: #6366f1;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 24px;
+        }
+
+        .ambient-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-purple) 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(80px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .card {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            width: 100%;
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px 36px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #34d399;
+            margin-bottom: 24px;
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #10b981;
+            box-shadow: 0 0 10px #10b981;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        .demo-box {
+            background: rgba(10, 13, 20, 0.5);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 28px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .demo-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #e2e8f0;
+        }
+
+        .demo-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .demo-link-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 6px;
+            text-decoration: none;
+            color: #38bdf8;
+            transition: all 0.2s;
+        }
+
+        .demo-link-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(4px);
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .tag-error {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+        }
+
+        .tag-internal {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="card">
+        <div class="status-badge">
+            <span class="badge-dot"></span>
+            Hệ thống Nginx Web Server Đang Hoạt Động
+        </div>
+        <h1>Chào mừng đến với My-Web!</h1>
+        <p>Đây là trang web chính thức của học viên. Hệ thống đã được tích hợp trang lỗi 404 tùy biến và cơ chế bảo mật tệp nguồn <code>internal</code>.</p>
+
+        <div class="demo-box">
+            <div class="demo-title">Thử nghiệm các trường hợp kiểm tra:</div>
+            <div class="demo-links">
+                <a href="/invalid-path-demo" class="demo-link-item">
+                    <span>1. Truy cập đường dẫn không tồn tại: <code>/invalid-path-demo</code></span>
+                    <span class="tag tag-error">Test 404 Custom</span>
+                </a>
+                <a href="/404.html" class="demo-link-item">
+                    <span>2. Thử truy cập trực tiếp file lỗi: <code>/404.html</code></span>
+                    <span class="tag tag-internal">Test Internal Block</span>
+                </a>
+            </div>
+        </div>
+
+        <div style="font-size: 12px; color: #64748b;">
+            IT209 - Session 2: Web Server Nginx Configuration
+        </div>
+    </div>
+</body>
+</html>
